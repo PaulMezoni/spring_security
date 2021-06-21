@@ -16,17 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminController {
     private final UserService userService;
     private final RoleDAO roleDAO;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder bCryptPasswordEncoder;
 
-    public AdminController(UserService userService, RoleDAO roleDAO, PasswordEncoder passwordEncoder) {
+    public AdminController(UserService userService, RoleDAO roleDAO, PasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.roleDAO = roleDAO;
-        this.passwordEncoder = passwordEncoder;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @GetMapping
     public String allUsers(Model model) {
-        model.addAttribute("allUserList", userService.allUsers());
+        model.addAttribute("allUsersList", userService.allUsers());
         return "admin";
     }
 
@@ -35,7 +35,7 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new");
         modelAndView.addObject("user", new User());
-        modelAndView.addObject("roleList", roleDAO.getRoleSet());
+        modelAndView.addObject("rolesList", roleDAO.getRoleSet());
         return modelAndView;
     }
 
@@ -72,4 +72,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    public PasswordEncoder getbCryptPasswordEncoder() {
+        return bCryptPasswordEncoder;
+    }
 }

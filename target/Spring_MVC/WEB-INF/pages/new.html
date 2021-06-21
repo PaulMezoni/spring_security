@@ -18,11 +18,14 @@
     <p><label for="password">Password</label></p>
     <p><input type="password" th:field="*{password}" id="password" value="password"></p>
 
+    <p><label for="email">Email</label></p>
+    <p><input type="text" th:field="*{email}" id="email" value="email"></p>
+
     <p><label for="age">Age</label></p>
     <p><input type="number" th:field="*{age}" id="age" value="age"></p>
 
     <ul>
-        <li th:each="role : ${roleList}">
+        <li th:each="role : ${rolesList}">
             <input type="checkbox" name="selectedRoles" th:value="${role}"
                    th:text="${role.name}"/>
         </li>
