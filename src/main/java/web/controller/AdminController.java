@@ -31,7 +31,9 @@ public class AdminController {
     }
 
     @GetMapping(value = "/new")
-    public ModelAndView newUserPage() {
+    public ModelAndView newUserPage(/*@ModelAttribute("user") User user, Model model*/) {
+        /*model.addAttribute("rolesList", roleDAO.getRoleSet());
+        return "new";*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new");
         modelAndView.addObject("user", new User());
@@ -39,6 +41,12 @@ public class AdminController {
         return modelAndView;
     }
 
+    /*@PostMapping(value = "")
+    public String newUserPost(@ModelAttribute("user") User user, HttpServletRequest req) {
+        String[] selectedRoles = req.getParameterValues("roles");
+        userService.save(user, selectedRoles);
+        return "redirect:/admin";
+    }*/
     @PostMapping(value = "")
     public String newUserPost(@ModelAttribute("user") User user,
                               @RequestParam("selectedRoles") String[] selectedRoles) {
@@ -70,9 +78,5 @@ public class AdminController {
     public String deleteUser(@PathVariable("id") long id) {
         userService.delete(userService.getById(id));
         return "redirect:/admin";
-    }
-
-    public PasswordEncoder getbCryptPasswordEncoder() {
-        return bCryptPasswordEncoder;
     }
 }
