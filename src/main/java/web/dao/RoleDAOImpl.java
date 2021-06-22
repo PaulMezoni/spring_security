@@ -39,9 +39,10 @@ public class RoleDAOImpl implements RoleDAO {
     @Override
     public Role getRoleByName(String rolename) {
         try{
-            return entityManager.createQuery("SELECT r FROM Role r where r.name = :name", Role.class)
+            Role role = entityManager.createQuery("SELECT r FROM Role r where r.name = :name", Role.class)
                     .setParameter("name", rolename)
                     .getSingleResult();
+            return role;
         } catch (NoResultException ex){
             return null;
         }
@@ -49,7 +50,7 @@ public class RoleDAOImpl implements RoleDAO {
 
     public Set<Role> getRoleSet() {
         try{
-            return new HashSet<>(entityManager.createQuery("SELECT r FROM Role r", Role.class)
+            return new HashSet<Role>(entityManager.createQuery("SELECT r FROM Role r", Role.class)
                     .getResultList());
         } catch (NoResultException e){
             e.printStackTrace();

@@ -1,9 +1,9 @@
 package web.model;
 
-import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -154,4 +154,3 @@ public class User implements UserDetails {
                 '}';
     }
 }
-
