@@ -31,9 +31,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/new")
-    public ModelAndView newUserPage(/*@ModelAttribute("user") User user, Model model*/) {
-        /*model.addAttribute("rolesList", roleDAO.getRoleSet());
-        return "new";*/
+    public ModelAndView newUserPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new");
         modelAndView.addObject("user", new User());
@@ -41,12 +39,6 @@ public class AdminController {
         return modelAndView;
     }
 
-    /*@PostMapping(value = "")
-    public String newUserPost(@ModelAttribute("user") User user, HttpServletRequest req) {
-        String[] selectedRoles = req.getParameterValues("roles");
-        userService.save(user, selectedRoles);
-        return "redirect:/admin";
-    }*/
     @PostMapping(value = "")
     public String newUserPost(@ModelAttribute("user") User user,
                               @RequestParam("selectedRoles") String[] selectedRoles) {

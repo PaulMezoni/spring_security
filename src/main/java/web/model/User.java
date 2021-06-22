@@ -9,34 +9,35 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     Long id;
 
-    @Column
+    @Column(name = "username")
     String username;
 
-    @Column
+    @Column(name = "password")
     String password;
+
+    @Column(name = "name")
+    String name;
+
+    @Column(name = "age")
+    byte age;
+
+    @Column(name = "email")
+    String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @Column
-    String name;
-
-
-    @Column
-    byte age;
-
-    @Column
-    String email;
-
-    public User() { }
+    public User() {
+    }
 
     public User(String username, String name, String email, byte age) {
         this.username = username;
