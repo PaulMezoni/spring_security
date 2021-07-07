@@ -1,0 +1,17 @@
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/controller/AdminController.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/model/Role.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/config/AppConfig.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/config/handler/LoginSuccessHandler.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/config/AppInit.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/dao/UserDAO.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/dao/RoleDAOImpl.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/dao/UserDAOImpl.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/controller/LoginController.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/service/UserServiceImpl.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/controller/UserController.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/model/User.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/config/SpringSecurityInitializer.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/dao/RoleDAO.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/service/UserService.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/config/WebConfig.java
+/Users/paulmezoni/IdeaProjects/spring_security/src/main/java/web/config/SecurityConfig.java
