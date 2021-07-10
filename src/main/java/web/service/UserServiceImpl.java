@@ -16,7 +16,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService, UserDetailsService {
     private UserDAO userDAO;
     private final RoleService roleService;
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(RoleService roleService) {
@@ -26,11 +25,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
-    }
-
-    @Autowired
-    public void setCryptPasswordEncoder(PasswordEncoder bCryptPasswordEncoder) {
-        this.passwordEncoder= bCryptPasswordEncoder;
     }
 
     @Override
@@ -45,16 +39,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void save(User user, String[] roles) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(roleService.getRoleSetForUser(roles));
         userDAO.save(user);
     }
 
     @Override
     public void update(User user, String[] roles) {
-        if (!user.getPassword().isEmpty()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
         user.setRoles(roleService.getRoleSetForUser(roles));
         userDAO.update(user);
     }
@@ -64,6 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDAO.delete(user);
     }
 
+    //UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDAO.getUserByName(username);
