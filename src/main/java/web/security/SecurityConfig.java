@@ -1,4 +1,4 @@
-package web.config.security;
+package web.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import web.config.security.handler.LoginSuccessHandler;
+import web.security.handler.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //create db in web
 //        http.authorizeRequests().anyRequest().permitAll();
 
+        //рабочее
         http.formLogin()
                 // указываем страницу с формой логина
                 .loginPage("/login")
@@ -37,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем action с формы логина
                 .loginProcessingUrl("/login")
                 // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
+                .usernameParameter("param_username")
+                .passwordParameter("param_password")
                 // даем доступ к форме логина всем
                 .permitAll();
 

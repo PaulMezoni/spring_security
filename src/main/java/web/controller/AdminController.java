@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.dao.RoleDAO;
 import web.model.User;
+import web.service.RoleService;
 import web.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
-    private final RoleDAO roleDAO;
+    private final RoleService roleService;
     private final PasswordEncoder bCryptPasswordEncoder;
 
-    public AdminController(UserService userService, RoleDAO roleDAO, PasswordEncoder bCryptPasswordEncoder) {
+    public AdminController(UserService userService, RoleService roleService, PasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
-        this.roleDAO = roleDAO;
+        this.roleService = roleService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -35,7 +36,7 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new");
         modelAndView.addObject("user", new User());
-        modelAndView.addObject("rolesList", roleDAO.getRoleSet());
+        modelAndView.addObject("rolesList", roleService.getRoleSet());
         return modelAndView;
     }
 
@@ -55,7 +56,7 @@ public class AdminController {
     @GetMapping("/{id}/edit")
     public String editPage(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", userService.getById(id));
-        model.addAttribute("rolesList", roleDAO.getRoleSet());
+        model.addAttribute("rolesList", roleService.getRoleSet());
         return "edit";
     }
 
