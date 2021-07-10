@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import web.dao.RoleDAO;
 import web.dao.UserDAO;
 import web.model.User;
 
@@ -16,10 +15,16 @@ import java.util.List;
 public class UserServiceImpl implements UserService, UserDetailsService {
     private UserDAO userDAO;
     private final RoleService roleService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    @Autowired
+    public void setCryptPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Autowired
@@ -39,12 +44,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void save(User user, String[] roles) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(roleService.getRoleSetForUser(roles));
         userDAO.save(user);
     }
 
     @Override
     public void update(User user, String[] roles) {
+        if (!user.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         user.setRoles(roleService.getRoleSetForUser(roles));
         userDAO.update(user);
     }
@@ -53,6 +62,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void delete(User user) {
         userDAO.delete(user);
     }
+
 
     //UserDetailsService
     @Override

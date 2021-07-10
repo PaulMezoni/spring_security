@@ -13,7 +13,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="entityManagerFactory" value="16e5db56-3924-47d5-912d-18743bfba020" />
           <factory-entry name="spring-security" />
         </datasource-mapping>
         <naming-strategy-map />

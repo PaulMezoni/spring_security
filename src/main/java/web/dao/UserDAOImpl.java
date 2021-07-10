@@ -28,8 +28,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     @Transactional
-    public User getById(Long id) {
-        return entityManager.find(User.class, id);
+    public void delete(User user) {
+        User managed = entityManager.merge(user);
+        entityManager.remove(managed);
     }
 
     @Override
@@ -40,10 +41,10 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     @Transactional
-    public void delete(User user) {
-        User managed = entityManager.merge(user);
-        entityManager.remove(managed);
+    public User getById(Long id) {
+        return entityManager.find(User.class, id);
     }
+
 
     @Override
     public User getUserByName(String username) {
